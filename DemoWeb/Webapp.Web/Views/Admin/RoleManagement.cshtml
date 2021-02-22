@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "RoleManagement";
+    Layout = "~/Views/_shared/AdminLayoutPage.cshtml";
+}
+
+<div class="row">
+    <!-- Page Header -->
+    <div class="col-lg-12">
+        <h1 class="page-header">Role Management</h1>
+    </div>
+    <!--End Page Header -->
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Role Input Form</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Role Name
+            </div>
+            <div class="col-lg-6">
+                <input id="roleName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Role Description
+            </div>
+            <div class="col-lg-6">
+                <input id="roleDesc" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="button" class="btn btn-danger pull-right" value="Add" id="roleBtnAdd" />
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-8">
+        <div id="roleGrid"></div>
+    </div>
+
+</div>
+
+<!--<div class="row">-->
+<!-- Page Header -->
+<!--<div class="col-lg-12">
+    USer Form to Add
+</div>-->
+<!--End Page Header -->
+<!--</div>-->
+
+<script>
+
+    $(document).ready(function () {
+        PopulateRolGrid();
+
+        $("#roleBtnAdd").click(function () {
+            AddRole();
+
+        });
+    });
+</script>
+
+

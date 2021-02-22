@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_shared/LogInMasterLayoutPage.cshtml";
+}
+
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+    <div><span><strong>Login</strong></span></div>
+</div>
+<br>
+<div class="login">
+    <input type="text" placeholder="username" name="user" id="txtUserName"><br>
+    <input type="password" placeholder="password" name="password" id="txtPassword"><br>
+    <input type="button" value="Login" id="loginBtn">
+    <a href="/Login/ResetPassword">Reset password</a>
+    @*<input type="button" value="Reset Password" id="btnResetPassword">*@
+</div>
+
+<script>
+
+
+
+
+    $(document).ready(function () {
+
+        $("#loginBtn").click(function () {
+            var postData =
+            {
+                "UserName" : $("#txtUserName").val(),
+                "Password": $("#txtPassword").val()
+            };
+
+
+            console.log(postData);
+            console.log(JSON.stringify(postData));
+             $.ajax({
+                type: "POST",
+                 url: DemoAppWebAPIURL + 'api/User/Validate',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(postData),
+                dataType: "json",
+                success: function (msg) {
+
+                    if (msg == null) {
+                        window.location.href = "/Login/Failure";
+
+                    }
+                    else {
+                        window.location.href = "/Admin/Index";
+                    }
+                },
+                error: function (req, status, error) {
+                   alert("Error try again");
+                }
+            });
+
+        });
+
+        $("#btnResetPassword").click(function () {
+            window.location.href = "/Login/ResetPassword";
+        });
+    });
+</script>
+
+
+

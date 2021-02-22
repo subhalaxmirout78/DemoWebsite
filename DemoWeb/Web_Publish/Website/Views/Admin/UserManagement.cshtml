@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "UserManagement";
+    Layout = "~/Views/_shared/AdminLayoutPage.cshtml";
+}
+
+
+
+<div class="row">
+    <!-- Page Header -->
+    <div class="col-lg-12">
+        <h1 class="page-header">User Management</h1>
+    </div>
+    <!--End Page Header -->
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>User Input Form</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                User Name
+            </div>
+            <div class="col-lg-6">
+                <input id="userName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Password
+            </div>
+            <div class="col-lg-6">
+                <input id="password" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="button" class="btn btn-danger pull-right" value="Add" id="userBtnAdd" />
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-8">
+        <div id="userGrid"></div>
+    </div>
+
+</div>
+
+<!--<div class="row">-->
+<!-- Page Header -->
+<!--<div class="col-lg-12">
+    USer Form to Add
+</div>-->
+<!--End Page Header -->
+<!--</div>-->
+
+<script>
+
+    $(document).ready(function () {
+        PopulateUserGrid();
+
+        $("#userBtnAdd").click(function () {
+            AddUser();
+
+        });
+    });
+</script>
+
