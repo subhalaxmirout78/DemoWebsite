@@ -742,6 +742,7 @@
     <Content Include="Scripts\jqwidgets\styles\jqx.windowsphone.min.css" />
     <Content Include="Scripts\jqwidgets\styles\theme.css" />
     <Content Include="Scripts\jqwidgets\styles\theme.min.css" />
+    <Content Include="Scripts\UserRoleScript.js" />
     <Content Include="Scripts\UserScript.js" />
     <Content Include="template\admin\assets\css\main-style.css" />
     <Content Include="template\admin\assets\css\style.css" />

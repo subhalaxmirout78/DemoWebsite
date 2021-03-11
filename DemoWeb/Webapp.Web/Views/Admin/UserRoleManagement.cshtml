@@ -4,5 +4,133 @@
     Layout = "~/Views/_shared/AdminLayoutPage.cshtml";
 }
 
-<h2>UserRoleManagement</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Assign User Roles </h1>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-lg-4 ">
+        <div class="row">
+            <div class="col-lg-6">
+                User Name
+            </div>
+            <div class="col-lg-6">
+                <div id="comboBoxUsers" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Roles
+            </div>
+            <div class="col-lg-6">
+                <div id="dropDownRoles" />
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-lg-12">
+                <input type="button" class="btn btn-warning pull-right" value="Add" id="assignRoleBtn"/>
+            </div>
+        </div>
+    </div>
+        <div class="col-lg-12 pull-right">
+            <div id="UserRoleGrid"></div>
+        </div>
+ </div>
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            PopulateUserRoleGrid();
+            BindUsers();
+            BindRoles();
+
+            $("#assignRoleBtn").click(function () {
+                var userItem = $("#comboBoxUsers").jqxComboBox('getSelectedItem');
+                var roleItem = $("#dropDownRoles").jqxDropDownList('getSelectedItem');
+                var userId = userItem.value;
+                var roleId = roleItem.value;
+
+                console.log(userItem);
+                console.log(roleItem);
+                console.log(userId);
+                console.log(roleId);
+
+            });
+
+        });
+
+        function BindUsers() {
+            var url = DemoAppWebAPIURL + "api/User/GetAll";
+            // prepare the data
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'Id' },
+                    { name: 'UserName' }
+                ],
+                url: url,
+                async: false
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // Create a jqxComboBox
+            $("#comboBoxUsers").jqxComboBox({ selectedIndex: 0, source: dataAdapter, displayMember: "UserName", valueMember: "Id", width: 200, height: 30, });
+
+            // trigger the select event.
+            //$("#jqxWidget").on('select', function (event) {
+            //    if (event.args) {
+            //        var item = event.args.item;
+            //    if (item) {
+            //        var valueelement = $("<div></div>");
+            //        valueelement.text("Value: " + item.value);
+            //        var labelelement = $("<div></div>");
+            //        labelelement.text("Label: " + item.label);
+            //        $("#selectionlog").children().remove();
+            //        $("#selectionlog").append(labelelement);
+            //        $("#selectionlog").append(valueelement);
+            //   }
+            //}
+            // });
+        }
+
+        function BindRoles() {
+            var url = DemoAppWebAPIURL + "api/Role/GetAll";
+            // prepare the data
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'Name' },
+                    { name: 'Id' }
+                ],
+                url: url,
+                async: true
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // Create a jqxDropDownList
+            $("#dropDownRoles").jqxDropDownList({
+                selectedIndex: 2, source: dataAdapter, displayMember: "Name", valueMember: "Id", width: 200, height: 30,
+            });
+
+            // subscribe to the select event.
+            //$("#jqxWidget").on('select', function (event) {
+            //    if (event.args) {
+            //        var item = event.args.item;
+            //        if (item) {
+            //            var valueelement = $("<div></div>");
+            //            valueelement.text("Value: " + item.value);
+            //            var labelelement = $("<div></div>");
+            //            labelelement.text("Label: " + item.label);
+            //            $("#selectionlog").children().remove();
+            //            $("#selectionlog").append(labelelement);
+            //            $("#selectionlog").append(valueelement);
+            //        }
+            //    }
+            //});
+        }
+
+    </script>
